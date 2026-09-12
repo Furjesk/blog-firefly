@@ -22,17 +22,17 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		url: "#",
 		icon: "material-symbols:article",
 		children: [
-			// 归档
-			LinkPresets.Archive,
-
+			// 系列
+			LinkPresets.Series,
+			
 			// 分类
 			LinkPresets.Categories,
 
 			// 标签
 			LinkPresets.Tags,
 
-			// 系列
-			LinkPresets.Series,
+			// 归档
+			LinkPresets.Archive,
 		],
 	});
 
