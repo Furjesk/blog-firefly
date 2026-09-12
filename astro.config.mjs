@@ -245,6 +245,9 @@ export default defineConfig({
 				if (pathname === "/gallery/" && !siteConfig.pages.gallery) {
 					return false;
 				}
+				if (pathname === "/projects/" && !siteConfig.pages.projects) {
+					return false;
+				}
 				if (pathname === "/friends/" && !siteConfig.pages.friends) {
 					return false;
 				}

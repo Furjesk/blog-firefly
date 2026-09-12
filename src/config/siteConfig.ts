@@ -21,10 +21,12 @@ const pages = resolvePageToggles({
 	dynamic: true,
 	// 相册页面开关
 	gallery: true,
+	// 项目页面开关
+	projects: true,
 	// 书签导航页面开关
-	booknav: true,
+	booknav: false,
 	// 哔哩哔哩追番页面开关
-	bilibili: false,
+	bilibili: true,
 	// 番组计划页面开关
 	bangumi: false,
 	// VNDB页面开关

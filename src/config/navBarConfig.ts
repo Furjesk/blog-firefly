@@ -61,21 +61,24 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 
 			// 相册
 			LinkPresets.Gallery,
-
+			
 			// 书签导航
 			LinkPresets.Booknav,
-
+			
 			// 哔哩哔哩追番
 			LinkPresets.Bilibili,
-
+			
 			// 番组计划
 			LinkPresets.Bangumi,
-
+			
 			// VNDB
 			LinkPresets.VNDB,
-
+			
 			// MyAnimeList
 			LinkPresets.MAL,
+
+			// 项目
+			LinkPresets.Projects,
 		],
 	});
 
@@ -196,6 +199,13 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		url: "/gallery/",
 		icon: "material-symbols:photo-library",
 		pageKey: "gallery",
+	},
+	Projects: {
+		name: "项目",
+		url: "/projects/",
+		icon: "material-symbols:work",
+		pageKey: "projects", // 对应 siteConfig.pages 中的页面键名，用于动态显示/隐藏
+		external: true, // 是否为外部链接
 	},
 	Booknav: {
 		name: "书签导航",
