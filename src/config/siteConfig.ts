@@ -48,7 +48,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "Site",
 
 	// 站点 URL
-	site_url: "https://blog.furjesk.com",
+	site_url: "https://Furjesk.github.io",
 
 	// 站点描述
 	description:
