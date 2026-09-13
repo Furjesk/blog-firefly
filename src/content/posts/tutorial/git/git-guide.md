@@ -11,7 +11,7 @@ series: "Git 指南"
 seriesOrder: 1
 ---
 
-# 首次上传项目到Git
+# 首次上传本地项目到Git
 
 > [!NOTE] 温馨提示
 > 转载请标注来源哦~~
@@ -97,6 +97,8 @@ git remote add origin 远程仓库HTTPS链接
 
 ```bash
 git pull --rebase origin master
+# 如果是 Github 默认分支为 main
+git pull --rebase origin main
 ```
 
 - 若远程仓库为空（未勾选“初始化 README 文件”），可跳过此步骤；
@@ -108,6 +110,8 @@ git pull --rebase origin master
 
 ```bash
 git push origin master
+# 如果是 Github 默认分支为 main
+git push origin main
 ```
 
 - 首次推送会弹出登录窗口，输入你的 Gitee 用户名和密码（或使用 Gitee 令牌登录，令牌需在 Gitee 「设置-安全设置-私人令牌」中创建）；
@@ -171,6 +175,8 @@ git push origin develop
 ```
 
 ### 发布到 master（当 develop 稳定时）
+
+**如果是 Github 默认分支为 main，将下面的 master 替换为 main**
 
 ```bash
 git checkout master
