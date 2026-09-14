@@ -4,7 +4,7 @@ published: 2022-06-02
 pinned: false
 description: 通过本章的学习，你将学习到编程语言的核心——面向对象（此对象非彼对象哈）的概念和使用方法。文章内容来自站主大学时期的课程笔记。
 # image: ./image-20230811161806416.png
-tags: [Python, Python 教程, Python 进阶, 教程]
+tags: [Python, Python 教程, Python 进阶, 教程, 面向对象]
 category: Python 教程:从入门到精通
 slug: tutorial-python-oo1
 series: "Python 教程:从入门到精通"

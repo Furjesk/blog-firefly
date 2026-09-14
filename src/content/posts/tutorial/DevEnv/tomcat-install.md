@@ -3,7 +3,7 @@ title: Tomcat 卸载与安装
 published: 2021-09-29
 pinned: false
 description: 本文将介绍 Tomcat 绿色版的卸载与安装方法。
-image: ./tomcat.png
+image: ./assets/tomcat.png
 tags: [Tomcat, 安装, 指南, 教程]
 category: 环境安装指南
 slug: tutorial-tomcat-install
