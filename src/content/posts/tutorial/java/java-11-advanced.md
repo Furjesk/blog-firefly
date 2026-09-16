@@ -8,7 +8,7 @@ tags: [Java, Java 教程, Java 高级, 教程, 反射, 注解, 动态代理]
 category: Java 教程:从入门到精通
 slug: tutorial-java-advanced
 series: "Java 教程:从入门到精通"
-seriesOrder: 111
+seriesOrder: 11
 ---
 
 > [!NOTE] 温馨提示
