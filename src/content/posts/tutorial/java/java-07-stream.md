@@ -11,12 +11,12 @@ series: "Java 教程:从入门到精通"
 seriesOrder: 7
 ---
 
+# Java 进阶<Stream流>
+
 > [!NOTE] 温馨提示
 > 转载请标注来源哦~~
 > 
 > 本文介绍 Java 进阶部分，你将学习到 Java Stream流的使用方法，这将大大简化数据处理，提高代码效率。文章内容来自站主大学时期的课程笔记。
-
-# Java 进阶<Stream流>
 
 ## Stream流
 
