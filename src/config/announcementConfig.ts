@@ -5,7 +5,7 @@ export const announcementConfig: AnnouncementConfig = {
 	title: "",
 
 	// 公告内容 ✈️ 🚀
-	content: "SpringBoot 教程即将上线✈️",
+	content: "SpringBoot2 教程已上线🚀",
 
 	// 是否允许用户关闭公告
 	closable: true,
