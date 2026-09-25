@@ -493,6 +493,17 @@ enum I18nKey {
 	videoPrev = "videoPrev",
 	videoNext = "videoNext",
 	videoLoadError = "videoLoadError",
+
+	// 项目页面
+	projects = "projects",
+	projectsDescription = "projectsDescription",
+	projectsFeatured = "projectsFeatured",
+	projectsFeaturedDescription = "projectsFeaturedDescription",
+	projectsAll = "projectsAll",
+	projectsAllDescription = "projectsAllDescription",
+	projectsViewGithub = "projectsViewGithub",
+	projectsViewDemo = "projectsViewDemo",
+	projectsEmpty = "projectsEmpty",
 }
 
 export default I18nKey;

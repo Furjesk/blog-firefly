@@ -204,8 +204,8 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "项目",
 		url: "/projects/",
 		icon: "material-symbols:work",
-		pageKey: "projects", // 对应 siteConfig.pages 中的页面键名，用于动态显示/隐藏
-		external: true, // 是否为外部链接
+		pageKey: "projects", // 对应 siteConfig.ts 中的页面键名，用于动态显示/隐藏
+		// external: true, // 是否为外部链接
 	},
 	Booknav: {
 		name: "书签导航",

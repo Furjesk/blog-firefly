@@ -512,4 +512,17 @@ export const ru: Translation = {
 	[Key.videoPrev]: "Предыдущее видео",
 	[Key.videoNext]: "Следующее видео",
 	[Key.videoLoadError]: "Не удалось загрузить видео",
+
+	// Страница проектов
+	[Key.projects]: "Проекты",
+	[Key.projectsDescription]:
+		"Мои проекты с открытым исходным кодом и другие работы",
+	[Key.projectsFeatured]: "Избранные проекты",
+	[Key.projectsFeaturedDescription]:
+		"Отобранные качественные проекты, достойные рекомендации",
+	[Key.projectsAll]: "Все проекты",
+	[Key.projectsAllDescription]: "Сборник всех моих проектов",
+	[Key.projectsViewGithub]: "Посмотреть код",
+	[Key.projectsViewDemo]: "Живое демо",
+	[Key.projectsEmpty]: "Пока нет проектов",
 };

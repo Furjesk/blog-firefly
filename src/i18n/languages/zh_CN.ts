@@ -499,4 +499,15 @@ export const zh_CN: Translation = {
 	[Key.videoPrev]: "上一个视频",
 	[Key.videoNext]: "下一个视频",
 	[Key.videoLoadError]: "视频加载失败",
+
+	// 项目页面
+	[Key.projects]: "项目",
+	[Key.projectsDescription]: "展示我的开源项目和作品",
+	[Key.projectsFeatured]: "推荐项目",
+	[Key.projectsFeaturedDescription]: "精选的优质项目，值得推荐",
+	[Key.projectsAll]: "全部项目",
+	[Key.projectsAllDescription]: "我的所有项目汇总",
+	[Key.projectsViewGithub]: "查看代码",
+	[Key.projectsViewDemo]: "在线预览",
+	[Key.projectsEmpty]: "暂无项目",
 };

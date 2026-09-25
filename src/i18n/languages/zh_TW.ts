@@ -501,4 +501,15 @@ export const zh_TW: Translation = {
 	[Key.videoPrev]: "上一個影片",
 	[Key.videoNext]: "下一個影片",
 	[Key.videoLoadError]: "影片載入失敗",
+
+	// 專案頁面
+	[Key.projects]: "專案",
+	[Key.projectsDescription]: "展示我的開源專案和作品",
+	[Key.projectsFeatured]: "推薦專案",
+	[Key.projectsFeaturedDescription]: "精選的優質專案，值得推薦",
+	[Key.projectsAll]: "全部專案",
+	[Key.projectsAllDescription]: "我的所有專案彙整",
+	[Key.projectsViewGithub]: "查看程式碼",
+	[Key.projectsViewDemo]: "線上預覽",
+	[Key.projectsEmpty]: "暫無專案",
 };

@@ -511,4 +511,16 @@ export const en: Translation = {
 	[Key.videoPrev]: "Previous video",
 	[Key.videoNext]: "Next video",
 	[Key.videoLoadError]: "Video failed to load",
+
+	// Projects page
+	[Key.projects]: "Projects",
+	[Key.projectsDescription]: "Showcasing my open source projects and works",
+	[Key.projectsFeatured]: "Featured Projects",
+	[Key.projectsFeaturedDescription]:
+		"Handpicked quality projects worth recommending",
+	[Key.projectsAll]: "All Projects",
+	[Key.projectsAllDescription]: "A collection of all my projects",
+	[Key.projectsViewGithub]: "View Code",
+	[Key.projectsViewDemo]: "Live Demo",
+	[Key.projectsEmpty]: "No projects yet",
 };

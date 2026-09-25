@@ -509,4 +509,17 @@ export const ja: Translation = {
 	[Key.videoPrev]: "前の動画",
 	[Key.videoNext]: "次の動画",
 	[Key.videoLoadError]: "動画の読み込みに失敗しました",
+
+	// プロジェクトページ
+	[Key.projects]: "プロジェクト",
+	[Key.projectsDescription]:
+		"私のオープンソースプロジェクトと作品を紹介します",
+	[Key.projectsFeatured]: "おすすめプロジェクト",
+	[Key.projectsFeaturedDescription]:
+		"厳選した質の高いプロジェクト。おすすめです",
+	[Key.projectsAll]: "すべてのプロジェクト",
+	[Key.projectsAllDescription]: "私の全プロジェクト一覧",
+	[Key.projectsViewGithub]: "コードを見る",
+	[Key.projectsViewDemo]: "ライブデモ",
+	[Key.projectsEmpty]: "プロジェクトがありません",
 };

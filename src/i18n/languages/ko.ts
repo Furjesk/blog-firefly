@@ -508,4 +508,16 @@ export const ko: Translation = {
 	[Key.videoPrev]: "이전 영상",
 	[Key.videoNext]: "다음 영상",
 	[Key.videoLoadError]: "영상을 불러오지 못했습니다",
+
+	// 프로젝트 페이지
+	[Key.projects]: "프로젝트",
+	[Key.projectsDescription]: "제 오픈소스 프로젝트와 작품을 소개합니다",
+	[Key.projectsFeatured]: "추천 프로젝트",
+	[Key.projectsFeaturedDescription]:
+		"엄선된 우수 프로젝트, 추천할 만한 작품",
+	[Key.projectsAll]: "전체 프로젝트",
+	[Key.projectsAllDescription]: "모든 프로젝트 모음",
+	[Key.projectsViewGithub]: "코드 보기",
+	[Key.projectsViewDemo]: "라이브 데모",
+	[Key.projectsEmpty]: "프로젝트가 없습니다",
 };

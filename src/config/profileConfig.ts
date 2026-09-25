@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "Furjesk",
 
 	// 个人签名
-	bio: "读书，由薄到厚，再由厚到薄",
+	bio: "读书，应由薄到厚，再由厚到薄",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons

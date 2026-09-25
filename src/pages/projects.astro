@@ -1,0 +1,275 @@
+---
+import { Icon } from "astro-icon/components";
+import ImageWrapper from "@/components/common/ImageWrapper.astro";
+import { projectsConfig, siteConfig } from "@/config";
+import I18nKey from "@/i18n/i18nKey";
+import { i18n } from "@/i18n/translation";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { url } from "@/utils/url-utils";
+import { fetchAllProjectStars, formatStarCount } from "@/utils/github-star-utils";
+
+// 检查页面是否启用
+if (!projectsConfig.enabled) {
+	return Astro.redirect("/404/");
+}
+
+// 获取项目数据并动态获取 star 数量
+const projectsWithStars = await fetchAllProjectStars(projectsConfig.projects);
+
+const title = projectsConfig.title || i18n(I18nKey.projects);
+const description = projectsConfig.description || i18n(I18nKey.projectsDescription);
+
+// 分离推荐项目和普通项目
+const featuredProjects = projectsWithStars.filter(p => p.featured);
+const otherProjects = projectsWithStars.filter(p => !p.featured);
+---
+
+<MainGridLayout title={title} description={description}>
+  <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <!-- 页面标题和描述 -->
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="h-8 w-8 rounded-lg bg-(--primary) flex items-center justify-center text-white dark:text-black/70">
+            <Icon name="material-symbols:code-blocks" class="text-[1.5rem]"></Icon>
+          </div>
+          <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+            {title}
+          </div>
+        </div>
+        {description && (
+          <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+            {description}
+          </p>
+        )}
+      </div>
+
+      <!-- 推荐项目区域 -->
+      {featuredProjects.length > 0 && (
+        <div class="mb-8">
+          <div class="mb-4">
+            <div class="flex items-center gap-2 mb-3">
+              <Icon name="material-symbols:star" class="text-(--primary) text-xl" />
+              <h2 class="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+                {i18n(I18nKey.projectsFeatured)}
+              </h2>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">
+              {i18n(I18nKey.projectsFeaturedDescription)}
+            </p>
+            <div class="h-px bg-(--line-divider) w-full"></div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            {featuredProjects.map((project) => (
+              <div class="group card-base rounded-xl border border-(--line-divider) hover:border-(--primary) transition-all duration-300 overflow-hidden">
+                <!-- 项目媒体（图片或视频） -->
+                {project.video ? (
+                  <div class="relative w-full aspect-video bg-black overflow-hidden">
+                    <video
+                      src={url(project.video)}
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : project.image ? (
+                  <div class="relative w-full aspect-video overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+                    <ImageWrapper
+                      src={project.image}
+                      alt={project.name}
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : null}
+
+                <!-- 项目信息 -->
+                <div class="p-6">
+                  <h3 class="text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-3 group-hover:text-(--primary) transition-colors">
+                    {project.name}
+                  </h3>
+                  <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+
+                  {/* 标签和 Star 数量 */}
+                  <div class="flex flex-wrap items-center gap-2 mb-5">
+                    {project.tags && project.tags.length > 0 && (
+                      <>
+                        {project.tags.map((tag) => (
+                          <span class="px-2.5 py-1 text-xs rounded-full bg-(--primary)/10 text-(--primary) font-medium">
+                            {tag}
+                          </span>
+                        ))}
+                      </>
+                    )}
+                    {project.language && (
+                      <span class="px-2.5 py-1 text-xs rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium">
+                        {project.language}
+                      </span>
+                    )}
+                    {project.starCount !== undefined && (
+                      <span class="px-2.5 py-1 text-xs rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 font-medium inline-flex items-center gap-1">
+                        <Icon name="mdi:star" class="text-xs" />
+                        {formatStarCount(project.starCount)}
+                      </span>
+                    )}
+                  </div>
+
+                  <!-- 按钮 -->
+                  <div class="flex gap-3">
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-(--primary) text-white dark:text-black/70 rounded-lg font-medium hover:bg-(--primary)/90 active:scale-95 transition-all flex-1 justify-center"
+                      >
+                        <Icon name="mdi:github" class="text-sm" />
+                        <span>{i18n(I18nKey.projectsViewGithub)}</span>
+                      </a>
+                    )}
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-4 py-2 border border-(--primary) text-(--primary) rounded-lg font-medium hover:bg-(--primary)/10 active:scale-95 transition-all flex-1 justify-center"
+                      >
+                        <Icon name="material-symbols:open-in-new" class="text-sm" />
+                        <span>{i18n(I18nKey.projectsViewDemo)}</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- 普通项目区域 -->
+      {otherProjects.length > 0 && (
+        <div>
+          {featuredProjects.length > 0 && (
+            <div class="mb-4">
+              <div class="flex items-center gap-2 mb-3">
+                <Icon name="material-symbols:list-alt" class="text-(--primary) text-xl" />
+                <h2 class="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+                  {i18n(I18nKey.projectsAll)}
+                </h2>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-3">
+                {i18n(I18nKey.projectsAllDescription)}
+              </p>
+              <div class="h-px bg-(--line-divider) w-full"></div>
+            </div>
+          )}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            {otherProjects.map((project) => (
+              <div class="group card-base rounded-lg border border-(--line-divider) hover:border-(--primary) transition-all duration-300 p-5">
+                <div class="flex items-start gap-3">
+                  {/* 项目媒体缩略图 */}
+                  {(project.image || project.video) && (
+                    <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 dark:bg-neutral-800">
+                      {project.video ? (
+                        <ImageWrapper
+                          src={project.image || ''}
+                          alt={project.name}
+                          class="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <ImageWrapper
+                          src={project.image || ''}
+                          alt={project.name}
+                          class="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  )}
+
+                  {/* 项目信息 */}
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-1.5 group-hover:text-(--primary) transition-colors">
+                      {project.name}
+                    </h3>
+                    <p class="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed mb-2.5 line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    {/* 标签和 Star 数量 */}
+                    <div class="flex flex-wrap items-center gap-1 mb-3">
+                      {project.tags && project.tags.length > 0 && (
+                        <>
+                          {project.tags.slice(0, 2).map((tag) => (
+                            <span class="px-1.5 py-0.5 text-[10px] rounded-full bg-(--primary)/10 text-(--primary) font-medium">
+                              {tag}
+                            </span>
+                          ))}
+                          {project.tags.length > 2 && (
+                            <span class="px-1.5 py-0.5 text-[10px] rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 font-medium">
+                              +{project.tags.length - 2}
+                            </span>
+                          )}
+                        </>
+                      )}
+                      {project.language && (
+                        <span class="px-1.5 py-0.5 text-[10px] rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium">
+                          {project.language}
+                        </span>
+                      )}
+                      {project.starCount !== undefined && (
+                        <span class="px-1.5 py-0.5 text-[10px] rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 font-medium inline-flex items-center gap-1">
+                          <Icon name="mdi:star" class="text-[10px]" />
+                          {formatStarCount(project.starCount)}
+                        </span>
+                      )}
+                    </div>
+
+                    <!-- 按钮 -->
+                    <div class="flex gap-2">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1 px-2.5 py-1 bg-(--primary) text-white dark:text-black/70 rounded text-xs font-medium hover:bg-(--primary)/90 transition-all"
+                        >
+                          <Icon name="mdi:github" class="text-xs" />
+                          <span>GitHub</span>
+                        </a>
+                      )}
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1 px-2.5 py-1 border border-(--primary) text-(--primary) rounded text-xs font-medium hover:bg-(--primary)/10 transition-all"
+                        >
+                          <Icon name="material-symbols:open-in-new" class="text-xs" />
+                          <span>Demo</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- 空状态 -->
+      {projectsConfig.projects.length === 0 && (
+        <div class="text-center py-12 text-neutral-500 dark:text-neutral-500">
+          <Icon name="material-symbols:inbox" class="mx-auto text-4xl mb-3 opacity-50" />
+          <p>{i18n(I18nKey.projectsEmpty)}</p>
+        </div>
+      )}
+    </div>
+  </div>
+</MainGridLayout>
