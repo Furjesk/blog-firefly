@@ -16,7 +16,7 @@ seriesOrder: 1
 > [!NOTE] 温馨提示
 > 转载请标注来源哦~~
 
-> 以下步骤适用于 GitHub 和 Gitee，以 Gitee，以 为例
+> 以下步骤适用于 GitHub 和 Gitee，以 Gitee 为例
 
 ## 步骤1：创建 Gitee 远程仓库
 
@@ -141,47 +141,71 @@ develop ──●────●────●─────────●─
 > 💡 对于**个人小项目**，用 `master` + `develop` 双分支足够；
 > 对于**团队项目**，建议每人开 `feature/*` 分支。
 
-## ✅ 你的开发流程应该这样
+## 你的开发流程应该这样
 
-### 第一次初始化
+### 一、第一次初始化
 
 ```bash
 # 1. 克隆仓库（如果本地没有代码）
-git clone https://gitee.com/your-usernmae/your-project-name.git
-cd your-project-name
+git clone https://gitee.com/xxx/demo-java.git
+cd demo-java
 
 # 2. 创建 develop 分支（如果远程没有）
 git checkout -b develop
 
-# 3. 推送到 Gitee
+# 3. 推送到远程并建立跟踪关系
 git push -u origin develop
 ```
 
-### 日常开发
+### 二、日常开发
+
+(一) 创建个人分支：如果个人分支没创建，需要先创建个人分支，创建前先确保站在最新 develop 上
 
 ```bash
-# 1. 切换到 develop
+# 确立起点（基于 develop 新建分支）
 git checkout develop
 
-# 2. 拉取最新代码（重要！个人项目可省略）
-git pull origin develop
+# 先把 develop 更新到最新
+git pull --rebase origin develop
 
-# 3. 在 IDE 中开发...
-
-# 4. 提交并推送
-git add .
-git commit -m "例如 完成用户登录接口"
-git push origin develop
+# 基于当前所在分支，创建并切换到个人分支
+git checkout -b develop-xxx
 ```
 
-### 发布到 master（当 develop 稳定时）
+(二) 开发完成后：先提交、再同步、后推送
 
-**如果是 Github 默认分支为 main，将下面的 master 替换为 main**
+```bash
+# 在 IDE 中开发...
+
+# 精准添加。或使用 git add . 全部添加
+git add 文件名
+# 提交
+git commit -m "feat: 完成用户登录接口"
+# 同步主干最新代码。或点击 IDEA 的 Update Project... 并选择 Rebase 方式！
+git pull --rebase origin develop
+# 只推送到自己的分支
+git push origin develop-xxx
+```
+
+### 三、发起合并请求
+
+功能完成并推送到远程个人分支后，在 Gitee / GitHub 上从 develop-xxx 向 develop 发起合并请求（MR/PR），由团队成员 Code Review 通过后合入主干。
+
+禁止在本地 git checkout develop 再 git merge 然后 git push 主干——这会绕过审核、污染主干历史。
+
+### 四、发布到 master/main（当 develop 稳定时）
+
+**Gitee默认分支为master，如果是 Github 默认分支为 main**。下面命令必须使用仓库实际的默认分支名：
 
 ```bash
 git checkout master
-git pull origin master
-git merge develop          # 或使用 --no-ff 保留合并记录
+git pull origin master # 先把主干拉到最新
+
+git checkout develop
+git pull --rebase origin develop # 再确保本地 develop 是最新
+
+git checkout master
+git merge --no-ff develop  # 用 --no-ff 保留一次合并记录，便于发版追溯
 git push origin master
 ```
 
